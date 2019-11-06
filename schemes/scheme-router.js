@@ -49,12 +49,12 @@ router.get('/:id/steps', (req, res) => {
 router.post('/', (req, res) => {
   const schemeData = req.body;
 
-  Schemes.add(schemeData)
+  Schemes.addScheme(schemeData)
   .then(scheme => {
     res.status(201).json(scheme);
   })
   .catch (err => {
-    res.status(500).json({ message: 'Failed to create new scheme' });
+    res.status(500).json({ message: 'Failed to create new scheme' + err.message });
   });
 });
 
