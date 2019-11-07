@@ -35,14 +35,13 @@ function addScheme(scheme) {
     });
 }
 
-function addStep(step, scheme_id) {
+function addStep(steps) {
     return db('steps')
-      .insert({ ...step, scheme_id })
-      .then(([id]) => {
-          return db('steps').where({ id });
-      })
-    
-}
+       .insert(steps)
+       .then(ids => {
+          return findById(ids[0]);
+       });
+ } 
 
 function update(changes, id) {
     return db('schemes')
